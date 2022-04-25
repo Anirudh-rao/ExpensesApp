@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/transaction.dart';
-import 'new_transcation.dart';
+import './new_transaction.dart';
 import 'transcation_list.dart';
 
 class UserTransactions extends StatefulWidget {

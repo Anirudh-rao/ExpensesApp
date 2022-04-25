@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../Widgets/new_transcation.dart';
+import './Widgets/new_transaction.dart';
 import '../Widgets/transcation_list.dart';
 import 'Widgets/user_transactions.dart';
 
@@ -24,24 +24,26 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.purple,
         title: Text('Expenses App'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Text('Chart',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 50,
-                  )),
-              elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                child: Text('Chart',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 50,
+                    )),
+                elevation: 5,
+              ),
             ),
-          ),
-          //Input Area
-          UserTransactions(),
-        ],
+            //Input Area
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
