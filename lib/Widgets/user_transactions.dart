@@ -33,7 +33,8 @@ class _UserTransactionsState extends State<UserTransactions> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        NewTransaction(),
+        //Without parathasis allows us to point to the function
+        NewTransaction(_addNewTransaction),
         TranscationList(_UserTransactions),
       ],
     );
