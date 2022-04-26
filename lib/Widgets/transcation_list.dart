@@ -30,7 +30,8 @@ class TranscationList extends StatelessWidget {
                     //Text Widget outputs text
                     //$ is a reversed charecter
                     // we can use '\'
-                    '\₹${transcations[index].Amount}',
+                    //ToStringFixed(2) will only Display 2 decimal places
+                    '\₹${transcations[index].Amount.toStringAsFixed(2)}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

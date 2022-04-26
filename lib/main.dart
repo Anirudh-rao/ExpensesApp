@@ -21,9 +21,11 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
-        title: Text('Expenses App'),
-      ),
+          backgroundColor: Colors.purple,
+          title: Text('Expenses App'),
+          actions: <Widget>[
+            IconButton(onPressed: () {}, icon: Icon(Icons.add))
+          ]),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -44,6 +46,10 @@ class MyHomePage extends StatelessWidget {
             UserTransactions(),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.purple,
       ),
     );
   }
