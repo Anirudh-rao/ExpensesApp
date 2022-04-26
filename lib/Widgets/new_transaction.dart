@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   final Function addTx;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
   NewTransaction(this.addTx);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   void submitData() {
     final eneteredTitle = titleController.text;
@@ -13,11 +21,16 @@ class NewTransaction extends StatelessWidget {
     if (eneteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
+    //Widget. We can add any changes to the widget
+    // Should be named issues
 
-    addTx(
+    widget.addTx(
       eneteredTitle,
       enteredAmount,
     );
+    //We are telling the app the close the modal sheet after accepting values
+    
+    Navigator.of(context).pop();
   }
 
   @override
