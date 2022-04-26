@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './Widgets/new_transaction.dart';
 import '../Widgets/transcation_list.dart';
-import 'Widgets/user_transactions.dart';
+import 'models/transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +16,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _UserTransactions = [
+    Transaction(
+        id: 't1', Title: 'New Shoes', Amount: 69.90, date: DateTime.now()),
+    Transaction(id: 't2', Title: 'Groceries', Amount: 400, date: DateTime.now())
+  ];
+
+  void _addNewTransaction(String txTitle, double txAmount) {
+    final newTx = Transaction(
+      Title: txTitle,
+      Amount: txAmount,
+      date: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+    //To setState
+    setState(() {
+      //Add methid
+      _UserTransactions.add(newTx);
+    });
+  }
+
+  void _StartAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return GestureDetector(
+              onTap: () {}, child: NewTransaction(_addNewTransaction));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +58,9 @@ class MyHomePage extends StatelessWidget {
           backgroundColor: Colors.purple,
           title: Text('Expenses App'),
           actions: <Widget>[
-            IconButton(onPressed: () {}, icon: Icon(Icons.add))
+            IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () => _StartAddNewTransaction(context))
           ]),
       body: SingleChildScrollView(
         child: Column(
@@ -43,13 +79,14 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             //Input Area
-            UserTransactions(),
+            TranscationList(_UserTransactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.purple,
+        onPressed: () => _StartAddNewTransaction(context),
       ),
     );
   }
