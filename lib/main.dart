@@ -10,7 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      //Will add a Global Theme/Default  that the app can to follow
+      theme: ThemeData(
+          //PrimarySwatch makes the app  generate different shades of the color
+          //Primary Color forces a particukar color
+          primarySwatch: Colors.purple),
       home: MyHomePage(),
     );
   }
@@ -57,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.purple,
+          backgroundColor: Theme.of(context).primaryColor,
           title: Text('Expenses App'),
           actions: <Widget>[
             IconButton(
@@ -87,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: Colors.purple,
+        backgroundColor: Theme.of(context).primaryColor,
         onPressed: () => _StartAddNewTransaction(context),
       ),
     );
